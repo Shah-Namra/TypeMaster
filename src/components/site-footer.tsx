@@ -1,4 +1,4 @@
-import { Github, Link } from "lucide-react";
+import { Github } from "lucide-react";
 import { Button } from "./ui/button";
 
 export function SiteFooter() {
