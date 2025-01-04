@@ -1,12 +1,10 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const svgToDataUri = require("mini-svg-data-uri");
-const colors = require("tailwindcss/colors");
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+import defaultTheme from "tailwindcss/defaultTheme";
+import svgToDataUri from "mini-svg-data-uri";
+import colors from "tailwindcss/colors";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette.js";
+import tailwindcssAnimate from "tailwindcss-animate";
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -80,7 +78,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwindcss-animate'),
+    tailwindcssAnimate,
     addVariablesForColors,
     function ({ matchUtilities, theme }) {
       matchUtilities(
