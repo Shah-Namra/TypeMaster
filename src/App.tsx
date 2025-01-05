@@ -4,10 +4,13 @@ import { LandingHero } from '@/components/landing-hero';
 import { TypingTest } from '@/components/typing-test';
 import { Leaderboard } from '@/components/leaderboard';
 import { About } from '@/components/about';
+import { ContactPage } from '@/components/contact-page';
+import { PrivacyPage } from '@/components/legal/privacy-page';
+import { TermsPage } from '@/components/legal/terms-page';
 import { SiteFooter } from '@/components/site-footer';
 import { type View } from '@/lib/types';
 
-export function App() {
+export default  function App() {
   const [currentView, setCurrentView] = useState<View>('landing');
 
   const renderView = () => {
@@ -18,6 +21,12 @@ export function App() {
         return <Leaderboard onBack={() => setCurrentView('landing')} />;
       case 'about':
         return <About onBack={() => setCurrentView('landing')} />;
+      case 'contact':
+        return <ContactPage onBack={() => setCurrentView('about')} />;
+      case 'privacy':
+        return <PrivacyPage onBack={() => setCurrentView('landing')} />;
+      case 'terms':
+        return <TermsPage onBack={() => setCurrentView('landing')} />;
       default:
         return (
           <LandingHero 
@@ -35,9 +44,7 @@ export function App() {
         currentView={currentView}
       />
       <main className="flex-1">{renderView()}</main>
-      <SiteFooter />
+      <SiteFooter onNavigate={setCurrentView} />
     </div>
   );
 }
-
-export default App;

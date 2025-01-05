@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft, Heart, Github, Twitter } from 'lucide-react';
+import { ArrowLeft, Heart, Github, Twitter, MessageCircle } from 'lucide-react';
 
 interface AboutProps {
   onBack: () => void;
@@ -40,29 +40,26 @@ export function About({ onBack }: AboutProps) {
           <Card className="p-6">
             <h3 className="text-xl font-semibold mb-3">Connect With Us</h3>
             <div className="space-y-4">
-            <a href="https://github.com/shah-Namra/" target="_blank" rel="noopener noreferrer">
-
               <Button variant="outline" className="w-full justify-start gap-2">
                 <Github className="w-4 h-4" />
                 GitHub
               </Button>
-              </a>
-              <div className="space-y-4"></div>
-              <a href="https://x.com/Namra_Shah_" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="w-full justify-start gap-2">
                 <Twitter className="w-4 h-4" />
                 Twitter
               </Button>
-              </a>
-              <div className="space-y-4"></div>
-
-              <a href="" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <Heart className="w-4 h-4" />
+              <Button 
+                variant="outline" 
+                className="w-full justify-start gap-2"
+                onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'contact' }))}
+              >
+                <MessageCircle className="w-4 h-4" />
                 Contact Us
               </Button>
-              </a>
-
+              <Button variant="outline" className="w-full justify-start gap-2">
+                <Heart className="w-4 h-4" />
+                Support Us
+              </Button>
             </div>
           </Card>
         </div>

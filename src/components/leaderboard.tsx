@@ -11,7 +11,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
     { rank: 1, name: "Sarah K.", wpm: 145, accuracy: 98.5, icon: <Trophy className="w-5 h-5 text-yellow-500" /> },
     { rank: 2, name: "Michael R.", wpm: 138, accuracy: 97.8, icon: <Medal className="w-5 h-5 text-gray-400" /> },
     { rank: 3, name: "David L.", wpm: 132, accuracy: 96.9, icon: <Award className="w-5 h-5 text-amber-700" /> },
-    // Add more entries as needed
+    // Random data for display 
   ];
 
   return (
