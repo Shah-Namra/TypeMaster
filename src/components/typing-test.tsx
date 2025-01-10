@@ -31,6 +31,17 @@ export function TypingTest({ onBack }: TypingTestProps) {
   const [testState, setTestState] = useState<TestState>(initialTestState);
   const [duration, setDuration] = useState<number | null>(null);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleModeSelect = (mode: string, option: string) => {
     const content = getTestContent(mode, option);
@@ -42,6 +53,15 @@ export function TypingTest({ onBack }: TypingTestProps) {
 
   const handleInput = (value: string) => {
     if (testState.isComplete) return;
+
+    // Start timer on first input
+    if (!testState.startTime) {
+      setTestState(prev => ({
+        ...prev,
+        startTime: Date.now()
+      }));
+      setIsTimerActive(true);
+    }
 
     // Calculate accuracy
     const mistakes = value.split('').reduce((count, char, i) => 
@@ -71,14 +91,6 @@ export function TypingTest({ onBack }: TypingTestProps) {
     setIsTimerActive(false);
   };
 
-  const handleFirstType = () => {
-    setTestState(prev => ({
-      ...prev,
-      startTime: Date.now()
-    }));
-    setIsTimerActive(true);
-  };
-
   const resetTest = () => {
     setText('');
     setTestState(initialTestState);
@@ -87,11 +99,11 @@ export function TypingTest({ onBack }: TypingTestProps) {
   };
 
   return (
-    <div className="container max-w-6xl mx-auto py-8 px-4 space-y-8">
+    <div className="container max-w-6xl mx-auto py-4 md:py-8 px-4 space-y-6 md:space-y-8">
       {!text ? (
         <PracticeModes onSelectMode={handleModeSelect} onBack={onBack} />
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           <div className="flex justify-between items-center">
             <Button variant="ghost" size="icon" onClick={resetTest}>
               <ArrowLeft className="w-4 h-4" />
@@ -116,16 +128,15 @@ export function TypingTest({ onBack }: TypingTestProps) {
             onChange={handleInput}
             disabled={testState.isComplete}
             onComplete={handleComplete}
-            onFirstType={handleFirstType}
             className="shadow-lg"
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <AccuracyIndicator accuracy={testState.accuracy} />
             <SpeedGraph wpm={testState.wpm} />
           </div>
           
-          <KeyboardHeatmap />
+          {!isMobile && <KeyboardHeatmap />}
         </div>
       )}
     </div>

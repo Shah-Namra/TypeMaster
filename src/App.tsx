@@ -10,7 +10,7 @@ import { TermsPage } from '@/components/legal/terms-page';
 import { SiteFooter } from '@/components/site-footer';
 import { type View } from '@/lib/types';
 
-export default  function App() {
+export default function App() {
   const [currentView, setCurrentView] = useState<View>('landing');
 
   const renderView = () => {
@@ -43,7 +43,9 @@ export default  function App() {
         onNavigate={setCurrentView}
         currentView={currentView}
       />
-      <main className="flex-1">{renderView()}</main>
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {renderView()}
+      </main>
       <SiteFooter onNavigate={setCurrentView} />
     </div>
   );

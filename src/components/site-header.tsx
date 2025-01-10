@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Keyboard } from 'lucide-react';
 import { ThemeSwitcher } from './theme-switcher';
+import { MobileNav } from './site-header/mobile-nav';
+import { DesktopNav } from './site-header/desktop-nav';
 import { type View } from '@/lib/types';
+import { motion } from 'framer-motion';
 
 interface SiteHeaderProps {
   onNavigate: (view: View) => void;
@@ -9,51 +13,45 @@ interface SiteHeaderProps {
 }
 
 export function SiteHeader({ onNavigate, currentView }: SiteHeaderProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-xl mx-auto items-center justify-between px-4">
-        <Button 
-          variant="ghost" 
-          className="flex gap-2 items-center font-semibold"
-          onClick={() => onNavigate('landing')}
-        >
-          <Keyboard className="w-5 h-5" />
-          <span>TypeMaster</span>
-        </Button>
-        <nav className="hidden md:block">
-          <ul className="flex gap-4">
-            <li>
-              <Button 
-                variant={currentView === 'test' ? 'default' : 'ghost'}
-                onClick={() => onNavigate('test')}
-              >
-                Practice
-              </Button>
-            </li>
-            <li>
-              <Button 
-                variant={currentView === 'leaderboard' ? 'default' : 'ghost'}
-                onClick={() => onNavigate('leaderboard')}
-              >
-                Leaderboard
-              </Button>
-            </li>
-            <li>
-              <Button 
-                variant={currentView === 'about' ? 'default' : 'ghost'}
-                onClick={() => onNavigate('about')}
-              >
-                About
-              </Button>
-            </li>
-          </ul>
-        </nav>
-        <div className="flex items-center gap-4">
-          <ThemeSwitcher />
-          <Button variant="ghost">Sign In</Button>
-          <Button>Sign Up Free</Button>
+    <motion.header 
+      className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <Button 
+            variant="ghost" 
+            className="flex gap-3 items-center font-semibold group"
+            onClick={() => onNavigate('landing')}
+          >
+            <Keyboard className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            <span className="text-lg">TypeMaster</span>
+          </Button>
+
+          <DesktopNav currentView={currentView} onNavigate={onNavigate} />
+
+          <div className="hidden md:flex items-center gap-8">
+            <ThemeSwitcher />
+            <Button variant="ghost" className="px-6">Sign In</Button>
+            <Button className="px-6">Sign Up Free</Button>
+          </div>
+
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeSwitcher />
+            <MobileNav
+              currentView={currentView}
+              onNavigate={onNavigate}
+              isOpen={isOpen}
+              onOpenChange={setIsOpen}
+            />
+          </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

@@ -58,5 +58,5 @@ const keyboardLayout = [
     { key: 'W', code: 'KeyW' },
     // Add more keys...
   ],
-  // Add more rows...
+  // more rows needed
 ];

@@ -11,9 +11,9 @@ interface SpeedGraphProps {
   wpm: number;
 }
 
-const defaultAxisProps = {
-  stroke: 'hsl(var(--muted-foreground))',
+const axisStyle = {
   fontSize: 12,
+  stroke: 'hsl(var(--muted-foreground))',
 };
 
 export function SpeedGraph({ wpm }: SpeedGraphProps) {
@@ -24,7 +24,7 @@ export function SpeedGraph({ wpm }: SpeedGraphProps) {
       setSpeedData(prev => [...prev, {
         time: prev.length * 5,
         wpm
-      }].slice(-20)); // Keep last 20 points
+      }].slice(-20));
     }
   }, [wpm]);
 
@@ -33,18 +33,29 @@ export function SpeedGraph({ wpm }: SpeedGraphProps) {
       <h3 className="text-lg font-semibold mb-4">Speed Over Time</h3>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={speedData} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
-          <XAxis 
-            {...defaultAxisProps}
+          <XAxis
             dataKey="time"
-            label={{ value: "Time (s)", position: "bottom", ...defaultAxisProps }}
+            stroke={axisStyle.stroke}
+            fontSize={axisStyle.fontSize}
+            label={{ 
+              value: "Time (s)", 
+              position: "bottom",
+              style: axisStyle
+            }}
             padding={{ left: 0, right: 0 }}
           />
           <YAxis
-            {...defaultAxisProps}
-            label={{ value: "WPM", angle: -90, position: "left", ...defaultAxisProps }}
+            stroke={axisStyle.stroke}
+            fontSize={axisStyle.fontSize}
+            label={{ 
+              value: "WPM", 
+              angle: -90, 
+              position: "left",
+              style: axisStyle
+            }}
             padding={{ top: 10, bottom: 0 }}
           />
-          <Tooltip 
+          <Tooltip
             formatter={(value: number) => [`${value} WPM`, "Speed"]}
             labelFormatter={(time: number) => `${time}s`}
             contentStyle={{
@@ -53,10 +64,10 @@ export function SpeedGraph({ wpm }: SpeedGraphProps) {
               borderRadius: 'var(--radius)',
             }}
           />
-          <Line 
-            type="monotone" 
-            dataKey="wpm" 
-            stroke="hsl(var(--primary))" 
+          <Line
+            type="monotone"
+            dataKey="wpm"
+            stroke="hsl(var(--primary))"
             strokeWidth={2}
             dot={false}
             activeDot={{ r: 4 }}

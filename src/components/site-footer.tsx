@@ -14,14 +14,14 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
   ];
 
   return (
-    <footer className="border-t">
-      <div className="container flex flex-col gap-4 py-8 px-4 md:flex-row md:items-center md:justify-between">
+    <footer className="border-t mt-24">
+      <div className="container max-w-6xl mx-auto flex flex-col gap-4 py-12 px-8 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-2">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} TypeMaster. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
-            Built with React, Tailwind CSS, and shadcn/ui
+            Built with Typescript, Tailwind CSS, and shadcn/ui
           </p>
         </div>
         <div className="flex flex-wrap gap-2 md:gap-4">
@@ -35,9 +35,15 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
               {label}
             </Button>
           ))}
-          <Button variant="ghost" size="icon">
-            <Github className="h-5 w-5" />
-          </Button>
+          <a 
+            href="https://github.com/Shah-Namra"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="ghost" size="icon">
+              <Github className="h-5 w-5" />
+            </Button>
+          </a>
         </div>
       </div>
     </footer>
