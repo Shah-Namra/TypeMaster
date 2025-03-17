@@ -40,14 +40,28 @@ export function About({ onBack }: AboutProps) {
           <Card className="p-6">
             <h3 className="text-xl font-semibold mb-3">Connect With Us</h3>
             <div className="space-y-4">
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <Github className="w-4 h-4" />
-                GitHub
-              </Button>
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <Twitter className="w-4 h-4" />
-                Twitter
-              </Button>
+              <a 
+                href="https://github.com/Shah-Namra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </Button>
+              </a>
+              <a 
+                href="https://x.com/namra_Shah_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <Twitter className="w-4 h-4" />
+                  Twitter
+                </Button>
+              </a>
               <Button 
                 variant="outline" 
                 className="w-full justify-start gap-2"
@@ -56,10 +70,17 @@ export function About({ onBack }: AboutProps) {
                 <MessageCircle className="w-4 h-4" />
                 Contact Us
               </Button>
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <Heart className="w-4 h-4" />
-                Support Us
-              </Button>
+              <a 
+                href="https://github.com/Shah-Namra/TypeMaster"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <Heart className="w-4 h-4" />
+                  Support Us
+                </Button>
+              </a>
             </div>
           </Card>
         </div>
