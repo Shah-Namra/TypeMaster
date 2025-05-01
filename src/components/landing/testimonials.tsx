@@ -7,25 +7,25 @@ const testimonials = [
   {
     name: 'John Doe',
     role: 'Software Developer',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+    image: '',
     content: 'TypeMaster helped me increase my typing speed from 60 to 95 WPM in just two months. The real-time feedback is invaluable.',
   },
   {
-    name: 'John Doe',
+    name: 'Someone Doe',
     role: 'Content Writer',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
+    image: '',
     content: 'The variety of practice modes keeps me engaged. I especially love the programming snippets feature.',
   },
   {
-    name: 'John Doe',
+    name: 'Random Doe',
     role: 'Student',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80',
+    image: '',
     content: 'Perfect for preparing for coding interviews. The code snippets mode is a game-changer.',
   },
   {
-    name: 'John Doe',
+    name: 'technical Doe',
     role: 'Technical Writer',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e',
+    image: '',
     content: 'The customizable themes and sound effects make typing practice actually enjoyable!',
   },
 ];
